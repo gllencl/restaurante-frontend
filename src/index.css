@@ -1,68 +1,116 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
+/* ------------------------------
+   Global & Body
+------------------------------ */
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa; /* fondo gris claro */
+  color: #212529; /* texto principal */
   min-width: 320px;
   min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* ------------------------------
+   Títulos
+------------------------------ */
+h1, h3 {
+  font-weight: 600;
+  color: #0d6efd; /* azul Bootstrap */
+  margin-bottom: 1rem;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
+/* ------------------------------
+   Links
+------------------------------ */
+a {
   font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+  text-decoration: none;
+  color: #0d6efd;
 }
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+a:hover {
+  color: #0b5ed7;
+  text-decoration: underline;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+/* ------------------------------
+   Botones
+------------------------------ */
+button, .btn {
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+button:hover, .btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* ------------------------------
+   Cards & List
+------------------------------ */
+.card {
+  border: none;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.list-group-item {
+  font-size: 1.05em;
+  padding: 0.75rem 1.25rem;
+}
+
+/* ------------------------------
+   Tables
+------------------------------ */
+.table th, .table td {
+  vertical-align: middle;
+}
+
+/* ------------------------------
+   Containers
+------------------------------ */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 1rem;
+}
+
+/* ------------------------------
+   Media Queries / Responsive
+------------------------------ */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.4em;
+  }
+  h3 {
+    font-size: 1.6em;
+  }
+}
+
+/* ------------------------------
+   Optional Dark Mode
+------------------------------ */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #121212;
+    color: #e0e0e0;
+  }
+  a {
+    color: #64b5f6;
   }
   a:hover {
-    color: #747bff;
+    color: #42a5f5;
   }
-  button {
-    background-color: #f9f9f9;
+  .card {
+    background-color: #1e1e1e;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  }
+  .table {
+    color: #e0e0e0;
+  }
+  .table th {
+    background-color: #333;
   }
 }
