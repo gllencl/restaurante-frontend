@@ -7,7 +7,9 @@ export const getRestaurants = async () => {
 
 export const getDishes = async () => {
   const res = await fetch(`${API_URL}/dishes`);
-  return res.json();
+  const data = await res.json();
+  console.log(data);
+  return data;
 };
 
 export const getOrders = async () => {
