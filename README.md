@@ -1,16 +1,38 @@
-# React + Vite
+# Proyecto Final: Restaurante App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Descripción
+App web para mostrar restaurantes, platos, pedidos y clientes.  
+Backend con Node.js + MySQL en Docker, frontend con React + Vite + Bootstrap.
 
-Currently, two official plugins are available:
+## Backend
+- Endpoints: /restaurants, /dishes, /orders, /customers  
+- Levantar backend: `docker compose up -d`  
+- PhpMyAdmin: http://localhost:9091  
+- API Node.js: http://localhost:4000
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Frontend
+- Vite + React + Bootstrap  
+- Routing con React Router  
+- Estructura:
+  - /pages/Home.jsx → lista de restaurantes
+  - /pages/RestaurantPage.jsx → detalles restaurante
+  - /components/RestaurantList.jsx → lista restaurantes
+  - /services/api.js → funciones API
+- Levantar frontend: `npm install` y `npm run dev`  
+- URL: http://localhost:5173
 
-## React Compiler
+## Funcionalidades
+- Lista de restaurantes con nombre y barrio  
+- Detalles del restaurante: platos, pedidos y clientes  
+- Interfaz responsive, actualización dinámica sin recargar
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Git
+- 5 commits claros: creación frontend, Bootstrap, consumo API, correcciones RestaurantPage y clientes
 
-## Expanding the ESLint configuration
+## Despliegue
+- GitHub Pages o servidor propio  
+- Backend en Docker, frontend compilado con Vite
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Notas
+- Clientes desconocidos se muestran si no existen en la API  
+- Proyecto listo para entrega con toda la funcionalidad
