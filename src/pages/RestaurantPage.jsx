@@ -1,4 +1,3 @@
-// src/pages/RestaurantPage.jsx
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getDishes, getOrders, getCustomers, getRestaurants } from "../services/api";
@@ -12,29 +11,21 @@ export default function RestaurantPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    Promise.all([
-      getRestaurants(),
-      getDishes(),
-      getOrders(),
-      getCustomers()
-    ])
-      .then(([restaurantsData, dishesData, ordersData, customersData]) => {
-        // Restaurante seleccionado
-        const foundRestaurant = restaurantsData.find(
-          r => r.restauranteID === parseInt(id)
-        );
-        setRestaurant(foundRestaurant);
+    // Cargar restaurante
+    getRestaurants()
+      .then(data => setRestaurant(data.find(r => r.restauranteID === parseInt(id))));
 
-        // Filtrar platos por restauranteID
-        setDishes(dishesData.filter(d => d.restauranteID === parseInt(id)));
+    // Cargar platos
+    getDishes()
+      .then(data => setDishes(data.filter(d => d.restauranteID === parseInt(id))));
 
-        // Filtrar pedidos por restauranteID
-        const filteredOrders = ordersData.filter(o => o.restauranteID === parseInt(id));
-        setOrders(filteredOrders);
+    // Cargar pedidos
+    getOrders()
+      .then(data => setOrders(data));
 
-        // Guardamos clientes
-        setCustomers(customersData);
-      })
+    // Cargar clientes
+    getCustomers()
+      .then(setCustomers)
       .finally(() => setLoading(false));
   }, [id]);
 
@@ -52,11 +43,8 @@ export default function RestaurantPage() {
     return <p className="text-center text-danger mt-5">Restaurante no encontrado</p>;
   }
 
-  // Mapa de clientes usando clienteID y nombre completo
-  const customersMap = {};
-  customers.forEach(c => {
-    customersMap[c.clienteID] = `${c.nombre} ${c.apellido1} ${c.apellido2}`;
-  });
+  // Filtrar pedidos solo de este restaurante
+  const filteredOrders = orders.filter(o => o.restauranteID === restaurant.restauranteID);
 
   return (
     <div className="container my-4">
@@ -71,17 +59,22 @@ export default function RestaurantPage() {
           {dishes.map(d => (
             <li
               key={d.platoID}
-              className="list-group-item d-flex justify-content-between align-items-center"
+              className="list-group-item d-flex justify-content-between align-items-start flex-column flex-md-row"
             >
-              {d.plato}
-              <span className="badge bg-success rounded-pill">${d.precio}</span>
+              <div>
+                <strong>{d.plato}</strong>
+                {d.descripcion && (
+                  <div className="text-muted small">{d.descripcion}</div>
+                )}
+              </div>
+              <span className="badge bg-success rounded-pill mt-2 mt-md-0">${d.precio}</span>
             </li>
           ))}
         </ul>
       )}
 
       <h3 className="mt-4 mb-3 text-primary">Pedidos</h3>
-      {orders.length === 0 ? (
+      {filteredOrders.length === 0 ? (
         <p>No hay pedidos realizados</p>
       ) : (
         <table className="table table-striped table-hover">
@@ -92,12 +85,15 @@ export default function RestaurantPage() {
             </tr>
           </thead>
           <tbody>
-            {orders.map(o => (
-              <tr key={o.pedidoID}>
-                <td>{o.pedidoID}</td>
-                <td>{customersMap[o.clienteID] || "Desconocido"}</td>
-              </tr>
-            ))}
+            {filteredOrders.map(o => {
+              const customer = customers.find(c => c.clienteID === o.clienteID);
+              return (
+                <tr key={o.pedidoID}>
+                  <td>{o.pedidoID}</td>
+                  <td>{customer ? `${customer.nombre} ${customer.apellido1}` : "Desconocido"}</td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       )}

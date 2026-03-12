@@ -1,116 +1,133 @@
-/* ------------------------------
-   Global & Body
------------------------------- */
+/* ===== Root ===== */
+:root {
+  --primary-color: #0d6efd;
+  --bg-color: #f8f9fa;
+  --text-color: #212529;
+  --card-bg: #ffffff;
+  --card-shadow: rgba(0, 0, 0, 0.1);
+  --badge-bg: #198754;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ===== Global ===== */
 body {
   margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f8f9fa; /* fondo gris claro */
-  color: #212529; /* texto principal */
+  background-color: var(--bg-color);
+  color: var(--text-color);
   min-width: 320px;
   min-height: 100vh;
 }
 
-/* ------------------------------
-   Títulos
------------------------------- */
-h1, h3 {
-  font-weight: 600;
-  color: #0d6efd; /* azul Bootstrap */
+h1, h2, h3, h4 {
+  color: var(--primary-color);
   margin-bottom: 1rem;
 }
 
-/* ------------------------------
-   Links
------------------------------- */
+p {
+  margin-bottom: 0.5rem;
+}
+
+/* ===== Links ===== */
 a {
-  font-weight: 500;
+  color: var(--primary-color);
   text-decoration: none;
-  color: #0d6efd;
 }
 a:hover {
-  color: #0b5ed7;
   text-decoration: underline;
 }
 
-/* ------------------------------
-   Botones
------------------------------- */
-button, .btn {
-  border-radius: 8px;
+/* ===== Navbar ===== */
+.navbar {
+  background-color: var(--primary-color);
+  padding: 1rem 2rem;
+}
+.navbar a {
+  color: #fff;
+  margin-right: 1rem;
   font-weight: 500;
-  cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
 }
 
-button:hover, .btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-
-/* ------------------------------
-   Cards & List
------------------------------- */
+/* ===== Cards ===== */
 .card {
+  background-color: var(--card-bg);
   border: none;
-  border-radius: 1rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-.list-group-item {
-  font-size: 1.05em;
-  padding: 0.75rem 1.25rem;
-}
-
-/* ------------------------------
-   Tables
------------------------------- */
-.table th, .table td {
-  vertical-align: middle;
-}
-
-/* ------------------------------
-   Containers
------------------------------- */
-.container {
-  max-width: 1200px;
-  margin: auto;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 8px var(--card-shadow);
+  margin-bottom: 1.5rem;
   padding: 1rem;
 }
 
-/* ------------------------------
-   Media Queries / Responsive
------------------------------- */
-@media (max-width: 768px) {
-  h1 {
-    font-size: 2.4em;
-  }
-  h3 {
-    font-size: 1.6em;
-  }
+/* ===== Restaurant List ===== */
+.list-group-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.list-group-item div {
+  flex: 1;
+}
+.list-group-item strong {
+  font-size: 1.1rem;
+}
+.list-group-item .text-muted {
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
 }
 
-/* ------------------------------
-   Optional Dark Mode
------------------------------- */
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: #121212;
-    color: #e0e0e0;
+/* ===== Badges ===== */
+.badge {
+  background-color: var(--badge-bg);
+  color: #fff;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+/* ===== Table ===== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2rem;
+}
+table th, table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+.table-dark th {
+  background-color: #343a40;
+  color: #fff;
+}
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #e9ecef;
+}
+
+/* ===== Loader ===== */
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+}
+
+/* ===== Buttons ===== */
+button {
+  border-radius: 0.5rem;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+button:hover {
+  opacity: 0.85;
+}
+
+/* ===== Responsive ===== */
+@media (min-width: 768px) {
+  .list-group-item {
+    flex-direction: row;
+    align-items: center;
   }
-  a {
-    color: #64b5f6;
-  }
-  a:hover {
-    color: #42a5f5;
-  }
-  .card {
-    background-color: #1e1e1e;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-  }
-  .table {
-    color: #e0e0e0;
-  }
-  .table th {
-    background-color: #333;
+  .list-group-item .badge {
+    margin-left: 1rem;
   }
 }
