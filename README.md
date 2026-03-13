@@ -35,6 +35,7 @@ Backend con Node.js + MySQL en Docker, frontend con React + Vite + Bootstrap.
 - GitHub Pages o servidor propio  
 - Backend en Docker, frontend compilado con Vite  
 - En GitHub Pages: el `base` ya está configurado en `vite.config.js` para `/restaurante-frontend/`.
+- URL GitHub Pages: https://gllencl.github.io/restaurante-frontend/
 
 ### Pasos GitHub Pages
 1. `npm install`
