@@ -4,8 +4,10 @@ import Home from "./pages/Home";
 import RestaurantPage from "./pages/RestaurantPage";
 
 export default function App() {
+  const base = import.meta.env.MODE === "production" ? "/restaurante-frontend/" : "/";
+
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={base}>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
