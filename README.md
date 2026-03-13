@@ -8,7 +8,8 @@ Backend con Node.js + MySQL en Docker, frontend con React + Vite + Bootstrap.
 - Endpoints: /restaurants, /dishes, /orders, /customers  
 - Levantar backend: `docker compose up -d`  
 - PhpMyAdmin: http://localhost:9091  
-- API Node.js: http://localhost:4000
+- API Node.js (local): http://localhost:4000
+- API Node.js (servidor): http://51.210.22.156:4000
 
 ## Frontend
 - Vite + React + Bootstrap  
@@ -20,6 +21,7 @@ Backend con Node.js + MySQL en Docker, frontend con React + Vite + Bootstrap.
   - /services/api.js → funciones API
 - Levantar frontend: `npm install` y `npm run dev`  
 - URL: http://localhost:5173
+- Configurar API: crear `.env` con `VITE_API_URL=http://localhost:4000` para local, o usar el servidor remoto (por defecto).
 
 ## Funcionalidades
 - Lista de restaurantes con nombre y barrio  
@@ -31,7 +33,14 @@ Backend con Node.js + MySQL en Docker, frontend con React + Vite + Bootstrap.
 
 ## Despliegue
 - GitHub Pages o servidor propio  
-- Backend en Docker, frontend compilado con Vite
+- Backend en Docker, frontend compilado con Vite  
+- En GitHub Pages: el `base` ya está configurado en `vite.config.js` para `/restaurante-frontend/`.
+
+### Pasos GitHub Pages
+1. `npm install`
+2. `npm run deploy`  
+   (Esto hace build y publica la carpeta `dist` en la rama `gh-pages`)
+3. En GitHub: Settings → Pages → Source: `gh-pages` / root
 
 ## Notas
 - Clientes desconocidos se muestran si no existen en la API  

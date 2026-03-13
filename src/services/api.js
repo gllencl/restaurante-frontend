@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:4000";
+const API_URL = import.meta.env.VITE_API_URL || "http://51.210.22.156:4000";
 
 export const getRestaurants = async () => {
   const res = await fetch(`${API_URL}/restaurants`);
@@ -7,9 +7,7 @@ export const getRestaurants = async () => {
 
 export const getDishes = async () => {
   const res = await fetch(`${API_URL}/dishes`);
-  const data = await res.json();
-  console.log(data);
-  return data;
+  return res.json();
 };
 
 export const getOrders = async () => {

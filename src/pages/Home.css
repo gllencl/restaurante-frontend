@@ -1,40 +1,22 @@
-import { useEffect, useState } from "react";
-import RestaurantList from "../components/RestaurantList";
-import { getRestaurants } from "../services/api";
-import "./Home.css"; // Nuevo CSS específico para Home
+.home-banner {
+  min-height: 220px;
+  padding: 2.5rem 1.5rem;
+  color: #fff;
+  background: linear-gradient(135deg, #0d6efd 0%, #0b5ed7 40%, #084298 100%);
+}
 
-export default function Home() {
-  const [restaurants, setRestaurants] = useState([]);
-  const [loading, setLoading] = useState(true);
+.banner-text h1 {
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
 
-  useEffect(() => {
-    getRestaurants()
-      .then((data) => setRestaurants(data))
-      .finally(() => setLoading(false));
-  }, []);
+.banner-text p {
+  margin: 0.5rem auto 0;
+  max-width: 720px;
+}
 
-  if (loading) {
-    return (
-      <div className="text-center my-5">
-        <div className="spinner-border text-primary" role="status">
-          <span className="visually-hidden">Cargando...</span>
-        </div>
-      </div>
-    );
+@media (min-width: 768px) {
+  .home-banner {
+    min-height: 280px;
   }
-
-  return (
-    <div>
-      <section className="home-banner text-center d-flex align-items-center justify-content-center">
-        <div className="banner-text">
-          <h1>Nuestros Restaurantes</h1>
-          <p>Descubre los mejores platos y menús de nuestra ciudad</p>
-        </div>
-      </section>
-
-      <div className="container my-5">
-        <RestaurantList restaurants={restaurants} />
-      </div>
-    </div>
-  );
 }
