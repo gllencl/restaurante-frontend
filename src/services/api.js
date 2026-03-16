@@ -19,3 +19,13 @@ export const getCustomers = async () => {
   const res = await fetch(`${API_URL}/customers`);
   return res.json();
 };
+
+export const getOrderDishes = async (orderId) => {
+  const res = await fetch(`${API_URL}/order/${orderId}/dishes`);
+  return res.json();
+};
+
+export const getCategories = async () => {
+  const res = await fetch(`${API_URL}/categories`);
+  return res.json();
+};
