@@ -463,6 +463,7 @@ export default function RestaurantPage() {
                 value={searchTerm}
                 onChange={(event) => setSearchTerm(event.target.value)}
               />
+              <div className="form-hint">Busca por cliente, pedido o plato</div>
             </div>
             <div className="col-lg-2 col-md-6">
               <label className="form-label">Desde</label>
@@ -494,10 +495,11 @@ export default function RestaurantPage() {
                 <option value="orders">Nº pedidos</option>
               </select>
             </div>
-            <div className="col-lg-2 d-flex align-items-end">
+            <div className="col-lg-2">
+              <label className="form-label invisible">Acciones</label>
               <button
                 type="button"
-                className="btn btn-outline-secondary w-100"
+                className="btn btn-outline-secondary btn-xs w-100"
                 onClick={() => {
                   setSearchTerm("");
                   setDateFrom("");
@@ -507,21 +509,23 @@ export default function RestaurantPage() {
               >
                 Limpiar
               </button>
+              <button
+                type="button"
+                className="btn btn-outline-primary btn-xs w-100 mt-2"
+                onClick={handleExportExcel}
+                disabled={filteredOrders.length === 0}
+              >
+                Exportar Excel
+              </button>
             </div>
           </div>
-          <div className="d-flex justify-content-end mb-3">
-            <button
-              type="button"
-              className="btn btn-outline-primary btn-sm"
-              onClick={handleExportExcel}
-              disabled={filteredOrders.length === 0}
-            >
-              Exportar Excel
-            </button>
-          </div>
           {filteredOrders.length === 0 ? (
-            <div className="alert alert-warning">
-              No hay pedidos que coincidan con la búsqueda o el rango de fechas.
+            <div className="empty-state">
+              <div className="empty-icon">i</div>
+              <div className="empty-title">Sin resultados</div>
+              <div className="empty-text">
+                No hay pedidos que coincidan con la búsqueda o el rango de fechas.
+              </div>
             </div>
           ) : (
             <div className="orders-grid">
@@ -577,7 +581,7 @@ export default function RestaurantPage() {
                       </div>
                     </button>
                     <div id={collapseId} className="collapse mt-3">
-                      {group.orders.map((order) => {
+                      {group.orders.map((order, orderIndex) => {
                         const orderDishes = getOrderDishesList(order);
                         const orderTotal = orderDishes.reduce((acc, dish) => {
                           const numeric = Number(dish?.precio);
@@ -632,6 +636,9 @@ export default function RestaurantPage() {
                               <div className="order-total">
                                 Total pedido: <strong>{formattedTotal}</strong>
                               </div>
+                            )}
+                            {orderIndex < group.orders.length - 1 && (
+                              <div className="order-divider"></div>
                             )}
                           </div>
                         );
