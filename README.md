@@ -29,11 +29,11 @@ Backend con Node.js + MySQL en Docker, frontend con React + Vite + Bootstrap.
 - Interfaz responsive, actualización dinámica sin recargar
 
 ## Cambios recientes (frontend)
-- UI profesional de pedidos por cliente con tarjetas y panel de detalle  
-- Filtros por cliente/pedido, rango de fechas y ordenación  
-- Exportación a Excel  
-- Platos en formato carta con categorías y orden personalizado  
-- Mejoras visuales y de usabilidad (chevrons, resaltado de búsqueda)
+- Rediseño de la vista de pedidos por cliente con tarjetas y panel de detalle  
+- Filtros avanzados (cliente/pedido/plato), rango de fechas y ordenación  
+- Exportación a Excel para informes  
+- Platos en formato carta por categorías con orden editorial  
+- Ajustes de UX y microinteracción (chevrons, resaltado de búsqueda)
 
 ## Git
 - 5 commits claros: creación frontend, Bootstrap, consumo API, correcciones RestaurantPage y clientes
