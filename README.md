@@ -1,55 +1,32 @@
 # Proyecto Final: Restaurante App
 
 ## Descripción
-App web para mostrar restaurantes, platos, pedidos y clientes.  
-Backend con Node.js + MySQL en Docker, frontend con React + Vite + Bootstrap.
+App web para mostrar restaurantes, platos, pedidos y clientes. Backend Node.js + MySQL (Docker), frontend React + Vite + Bootstrap.
 
 ## Backend
-- Endpoints: /restaurants, /dishes, /orders, /customers  
-- Levantar backend: `docker compose up -d`  
-- PhpMyAdmin: http://localhost:9091  
-- API Node.js (local): http://localhost:4000
-- API Node.js (servidor): http://51.210.22.156:4000
+- Endpoints: `/restaurants`, `/dishes`, `/orders`, `/customers`
+- Levantar: `docker compose up -d`
+- PhpMyAdmin: http://localhost:9091
+- API local: http://localhost:4000
 
 ## Frontend
-- Vite + React + Bootstrap  
-- Routing con React Router  
-- Estructura:
-  - /pages/Home.jsx → lista de restaurantes
-  - /pages/RestaurantPage.jsx → detalles restaurante
-  - /components/RestaurantList.jsx → lista restaurantes
-  - /services/api.js → funciones API
-- Levantar frontend: `npm install` y `npm run dev`  
-- URL: http://localhost:5173
-- Configurar API: crear `.env` con `VITE_API_URL=http://localhost:4000` para local, o usar el servidor remoto (por defecto).
+- Levantar: `npm install` y `npm run dev`
+- URL local: http://localhost:5173
+- API: `.env` con `VITE_API_URL=http://localhost:4000` (por defecto usa servidor remoto)
 
-## Funcionalidades
-- Lista de restaurantes con nombre y barrio  
-- Detalles del restaurante: platos, pedidos y clientes  
-- Interfaz responsive, actualización dinámica sin recargar
+## Cumplimiento de requisitos
+- Consumo API externa con `fetch` en `src/services/api.js`.
+- Lista de restaurantes en `src/pages/Home.jsx`.
+- Detalle con platos, pedidos y clientes en `src/pages/RestaurantPage.jsx`.
+- Hooks `useEffect`/`useState` y React Router (`src/App.jsx`).
+- UI responsive con Bootstrap y actualización dinámica sin recarga.
+- Vite como bundler.
+- Git con >= 5 commits claros.
 
-## Cambios recientes (frontend)
-- Rediseño de la vista de pedidos por cliente con tarjetas y panel de detalle  
-- Filtros avanzados (cliente/pedido/plato), rango de fechas y ordenación  
-- Exportación a Excel para informes  
-- Platos en formato carta por categorías con orden editorial  
-- Ajustes de UX y microinteracción (chevrons, resaltado de búsqueda)
-
-## Git
-- 5 commits claros: creación frontend, Bootstrap, consumo API, correcciones RestaurantPage y clientes
-
-## Despliegue
-- GitHub Pages o servidor propio  
-- Backend en Docker, frontend compilado con Vite  
-- En GitHub Pages: el `base` ya está configurado en `vite.config.js` para `/restaurante-frontend/`.
-- URL GitHub Pages: https://gllencl.github.io/restaurante-frontend/
-
-### Pasos GitHub Pages
-1. `npm install`
-2. `npm run deploy`  
-   (Esto hace build y publica la carpeta `dist` en la rama `gh-pages`)
-3. En GitHub: Settings → Pages → Source: `gh-pages` / root
+## Despliegue (GitHub Pages)
+- URL: https://gllencl.github.io/restaurante-frontend/
+- Base configurada en `vite.config.js`.
+- Deploy: `npm run deploy` (publica `dist` en `gh-pages`).
 
 ## Notas
-- Clientes desconocidos se muestran si no existen en la API  
-- Proyecto listo para entrega con toda la funcionalidad
+- Si un cliente no existe en la API se muestra como "Cliente desconocido".
